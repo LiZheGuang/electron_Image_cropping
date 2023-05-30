@@ -5,3 +5,30 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+
+/* Ensure the size of the image fit the container perfectly */
+img {
+  display: block;
+
+  /* This rule is very important, please don't ignore this */
+  max-width: 100%;
+}
+h1{
+  margin-bottom: 18;
+  font-size: 24px;
+}
+.button_father{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.button_click{
+  background: black;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 14px;
+  text-align: center;
+  line-height: 40px;
+ 
+}

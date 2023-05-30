@@ -2,14 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
-
+    <title>图片编辑器</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
   <body>
     <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
+    <p>这是一款在线图片编辑器</p>
     <div>
-      <img id="image" src="main_window/assets/00001.png">
+      <!-- 生产环境是 -main_window去掉 -->
+      <input id="fileImages" type="file" />
+      <img id="image" src="" />
+      <div class="button_father">
+        <div class="button_click">锚点设置</div>
+        <div class="button_click" id="size_big">放大</div>
+        <div class="button_click" id="size_mini">缩小</div>
+        <div class="button_click" id="extend">导出</div>
+      </div>
     </div>
   </body>
 </html>
