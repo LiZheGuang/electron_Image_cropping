@@ -6,14 +6,17 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
   <body>
-    <h1>💖 Hello World!</h1>
-    <p>这是一款在线图片编辑器</p>
+    <h1>💖 图片编辑器 </h1>
     <div>
+      <!-- 图片路径格式 -->
+      <img src="../assets/1631858362561855488.png" alt="">
+    
       <!-- 生产环境是 -main_window去掉 -->
       <input id="fileImages" type="file" />
       <img id="image" src="" />
       <div class="button_father">
-        <div class="button_click">锚点设置</div>
+        <div class="button_click" id="bgc_center">背景图片居中</div>
+        <div class="button_click" id="bgc_size_fill">缩放至容器大小</div>
         <div class="button_click" id="size_big">放大</div>
         <div class="button_click" id="size_mini">缩小</div>
         <div class="button_click" id="extend">导出</div>

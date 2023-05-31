@@ -1,9 +1,10 @@
-const rules = require('./webpack.rules');
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-const path = require('path')
+const rules = require("./webpack.rules");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require("path");
+const assets = ["assets"];
 rules.push({
   test: /\.css$/,
-  use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+  use: [{ loader: "style-loader" }, { loader: "css-loader" }],
 });
 
 module.exports = {
@@ -11,14 +12,12 @@ module.exports = {
   module: {
     rules,
   },
-  plugins:[
+  plugins: [
     new CopyWebpackPlugin({
-      patterns: [
-        { 
-          from: path.resolve(__dirname, 'src/assets/'), 
-          to: path.resolve(__dirname, '.webpack/renderer/main_window/assets/') 
-        },
-      ]
-    })
-  ]
+      patterns: assets.map((asset) => ({
+        from: path.resolve(__dirname, "src", asset),
+        to: path.resolve(__dirname, ".webpack/renderer", asset),
+      })),
+    }),
+  ],
 };

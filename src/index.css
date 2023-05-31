@@ -17,18 +17,28 @@ h1{
   margin-bottom: 18;
   font-size: 24px;
 }
+#fileImages {
+  margin-top: 12px;
+}
 .button_father{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-top: 16px;
 }
 .button_click{
-  background: black;
+  background-color: black;
   color: white;
   width: 100px;
   height: 40px;
   border-radius: 14px;
   text-align: center;
   line-height: 40px;
+  cursor: pointer;
+  transition: background-color .35s ease-in; /* 定义过渡效果 */
  
+}
+
+.button_click:hover{
+  background-color: #3399fe;
 }

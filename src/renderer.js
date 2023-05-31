@@ -9,7 +9,7 @@ function cropperInit() {
   const image = document.getElementById("image");
   cropper = new Cropper(image, {
     aspectRatio: 1 / 1,
-    backgroundColor: "gray",
+
     crop(event) {
       // console.log(event.detail.x);
       // console.log(event.detail.y);
@@ -30,11 +30,14 @@ $("#size_mini").click(() => {
 });
 
 $("#extend").click(() => {
+  // todo 未来增加背景颜色与尺寸定义
   cropper
     .getCroppedCanvas({
       fillColor: "#fff",
       imageSmoothingEnabled: false,
       imageSmoothingQuality: "high",
+      with: 800,
+      height: 800,
     })
     .toBlob((blob) => {
       var downloadLink = document.createElement("a");
@@ -74,4 +77,36 @@ $("#fileImages").on("change", function (event) {
 
   // 将 FileList 对象转换为 URL
   // var url = URL.createObjectURL(fileList);
+});
+
+$("#bgc_center").click(() => {
+  // 图像容器
+  var containerSize = cropper.getContainerData();
+  // 裁剪框居住
+  var cropBoxData = cropper.getCropBoxData();
+  var newLeft = (containerSize.width - cropBoxData.width) / 2;
+  var newTop = (containerSize.height - cropBoxData.height) / 2;
+  cropper.setCropBoxData({ left: newLeft, top: newTop });
+  var imageData = cropper.getImageData();
+  var canvasData = {
+    left: (containerSize.width - imageData.width) / 2,
+    top: (containerSize.height - imageData.height) / 2,
+  };
+  cropper.setCanvasData(canvasData);
+});
+
+$("#bgc_size_fill").click(() => {
+  var canvasData = cropper.getCanvasData();
+  var cropBoxData = cropper.getCropBoxData();
+  var scaleX = cropBoxData.width / canvasData.naturalWidth;
+  var scaleY = cropBoxData.height / canvasData.naturalHeight;
+
+  cropper.setCanvasData({
+    left: cropBoxData.left,
+    top: cropBoxData.top,
+    width: cropBoxData.width,
+    height: cropBoxData.height,
+    scaleX: scaleX,
+    scaleY: scaleY,
+  });
 });
