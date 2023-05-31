@@ -6,13 +6,10 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
   <body>
-    <h1>💖 图片编辑器 </h1>
+    <h1>💖 图片编辑器</h1>
     <div>
-      <!-- 图片路径格式 -->
-      <img src="../assets/1631858362561855488.png" alt="">
-    
       <!-- 生产环境是 -main_window去掉 -->
-      <input id="fileImages" type="file" />
+      <input id="fileImages" type="file" accept="image/*" />
       <img id="image" src="" />
       <div class="button_father">
         <div class="button_click" id="bgc_center">背景图片居中</div>
@@ -20,6 +17,15 @@
         <div class="button_click" id="size_big">放大</div>
         <div class="button_click" id="size_mini">缩小</div>
         <div class="button_click" id="extend">导出</div>
+      </div>
+
+      <!-- 图片路径格式 -->
+      <div class="active-file-father">
+        <img
+          class="active-file"
+          src="../assets/1631858362561855488.png"
+          alt=""
+        />
       </div>
     </div>
   </body>

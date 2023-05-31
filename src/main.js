@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 
+const { shell } = require('electron')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {

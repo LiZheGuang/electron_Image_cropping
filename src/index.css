@@ -4,6 +4,8 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+
+  /* background-position: center center; */
 }
 
 /* Ensure the size of the image fit the container perfectly */
@@ -35,10 +37,22 @@ h1{
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  transition: background-color .35s ease-in; /* 定义过渡效果 */
- 
+  transition: background-color .35s ease-in, outline-color 0.5s ease-in-out;
+  border: 2px solid #000;
+    outline: 2px solid transparent;
 }
 
 .button_click:hover{
   background-color: #3399fe;
+  border: 2px solid transparent;
+  outline: 2px solid greenyellow; 
+}
+.active-file-father{
+  position: absolute;
+  right: 46px;
+  bottom: 24px;
+}
+.active-file{
+  
+  width: 86px;
 }
