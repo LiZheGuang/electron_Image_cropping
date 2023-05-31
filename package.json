@@ -1,6 +1,6 @@
 {
-  "name": "my-app-webpack",
-  "productName": "my-app-webpack",
+  "name": "electron_Image_cropping",
+  "productName": "图片裁剪工具",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
