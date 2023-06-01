@@ -9,7 +9,7 @@ electron + webpack 具备前端工程化的 图片裁剪工具,通过 cropperjs 
 - 图片导出功能
 - 图片居中裁剪居住
 - todo 拖拽上传
-- todo 图片压缩
+- 图片压缩
 - todo 自定义尺寸
 
 # 安装包直接下载
