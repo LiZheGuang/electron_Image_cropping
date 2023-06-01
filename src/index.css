@@ -16,8 +16,11 @@ img {
   max-width: 100%;
 }
 h1{
-  margin-bottom: 18;
+  margin-bottom: 18px;
   font-size: 24px;
+}
+h2{
+  margin-top: 18px;
 }
 #fileImages {
   margin-top: 12px;
@@ -49,10 +52,16 @@ h1{
 }
 .active-file-father{
   position: absolute;
-  right: 46px;
+  right: 0;
   bottom: 24px;
 }
 .active-file{
   
   width: 86px;
+}
+.image-input{
+  margin-top: 12px;
+}
+#image_size_add{
+  margin-top: 12px;
 }

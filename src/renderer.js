@@ -110,3 +110,11 @@ $("#bgc_size_fill").click(() => {
     scaleY: scaleY,
   });
 });
+
+let arrs = [];
+$("#image_size_add").click(() => {
+  window.electronAPI.ImageProcessing(arrs);
+  arrs = []
+});
+
+

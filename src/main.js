@@ -1,7 +1,22 @@
-const { app, BrowserWindow } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  Notification,
+} = require("electron");
+const sharp = require("sharp");
+const fs = require("fs");
+const path = require("path");
 
-const { shell } = require('electron')
+const {} = require("./app/utils/node_utils");
 
+function showNotification(title, body) {
+  new Notification({
+    title: title,
+    body: body,
+  }).show();
+}
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -13,13 +28,75 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration:true,
+      nodeIntegration: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       webSecurity: false, // false 之后就可以访问 本地资源文件了
     },
   });
 
+  ipcMain.on("image_processing", function (event, val) {
+    dialog
+      .showOpenDialog({
+        properties: ["openFile", "multiSelections"],
+        filters: [
+          {
+            name: "Images",
+            extensions: ["jpg", "png", "gif", "PNG", "JPEG", "jpeg"],
+          },
+        ],
+      })
+      .then((result) => {
+        let canceled = result.canceled;
+        if (canceled === true) {
+          return;
+        }
+        showNotification("图片压缩功能启动", "图片压缩中");
 
+        const desktopPath = path.join(require("os").homedir(), "Desktop");
+        const folderName = "ImageDist";
+        let arslen = 0;
+        for (let i = 0; i < result.filePaths.length; i++) {
+          let filePaths = result.filePaths[i];
+          const extName = path.extname(filePaths); // .jpeg
+          let fileName = path.basename(filePaths); // Leonardo_Diffusion_vector_tshirt_art_ready_to_print_colourful_1.jpeg
+          // console.log(fileName, extName);
+          fileName = new Date().getTime() + "_" + fileName;
+          // 目录地址
+          const folderPath = path.join(desktopPath, folderName);
+          // 图片路径 拼接目录地址
+          const filePath = path.join(folderPath, fileName);
+          //检查文件夹是否存在，如果不存在则创建文件夹
+          if (!fs.existsSync(folderPath)) {
+            fs.mkdirSync(folderPath);
+            console.log(`Created ${folderPath} directory`);
+          }
+          const inputBuffer = fs.readFileSync(filePaths);
+          let SharpServer;
+          if (extName === "png" || extName == "PNG") {
+            SharpServer = sharp(inputBuffer).png({
+              quality: 60, // 默认60
+            });
+          } else {
+            SharpServer = sharp(inputBuffer).jpeg({
+              quality: 60, // 默认60
+            });
+          }
+          SharpServer.toFile(filePath, (err, info) => {
+            if (err) {
+              console.error(err);
+            } else {
+              arslen++;
+              if (arslen >= result.filePaths.length) {
+                showNotification(
+                  "图片压缩功能启动",
+                  "图片压缩完成 ✿✿ヽ(°▽°)ノ✿"
+                );
+              }
+            }
+          });
+        }
+      });
+  });
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
