@@ -9,7 +9,7 @@ function cropperInit() {
   const image = document.getElementById("image");
   cropper = new Cropper(image, {
     aspectRatio: 1 / 1,
-
+    zoomOnWheel:false,
     crop(event) {
       // console.log(event.detail.x);
       // console.log(event.detail.y);
