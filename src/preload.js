@@ -3,7 +3,8 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    ImageProcessing: (title) => ipcRenderer.send('image_processing', title)
+    ImageProcessing: (title) => ipcRenderer.send('image_processing', title),
+    ImageOpticy:()=>ipcRenderer.send('image_opticy')
   })
 
 // Image processing.

@@ -31,6 +31,7 @@ const createWindow = () => {
       nodeIntegration: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       webSecurity: false, // false 之后就可以访问 本地资源文件了
+      webviewTag: true,
     },
   });
 
@@ -94,6 +95,58 @@ const createWindow = () => {
               }
             }
           });
+        }
+      });
+  });
+
+  ipcMain.on("image_opticy", function (event, val) {
+    console.log("node-server-image_opticy");
+    dialog
+      .showOpenDialog({
+        properties: ["openFile", "multiSelections"],
+        filters: [
+          {
+            name: "Images",
+            extensions: ["jpg", "png", "gif", "PNG", "JPEG", "jpeg"],
+          },
+        ],
+      })
+      .then((result) => {
+        let canceled = result.canceled;
+        if (canceled === true) {
+          return;
+        }
+        const desktopPath = path.join(require("os").homedir(), "Desktop");
+        const folderName = "ImageDist";
+        let arslen = 0;
+        for (let i = 0; i < result.filePaths.length; i++) {
+          let filePaths = result.filePaths[i];
+          const extName = path.extname(filePaths); // .jpeg
+          let fileName = path.basename(filePaths); // Leonardo_Diffusion_vector_tshirt_art_ready_to_print_colourful_1.jpeg
+          // console.log(fileName, extName);
+          fileName = new Date().getTime() + "_" + fileName;
+          // 目录地址
+          const folderPath = path.join(desktopPath, folderName);
+          // 图片路径 拼接目录地址
+          const filePath = path.join(folderPath, fileName);
+          //检查文件夹是否存在，如果不存在则创建文件夹
+          if (!fs.existsSync(folderPath)) {
+            fs.mkdirSync(folderPath);
+            console.log(`Created ${folderPath} directory`);
+          }
+          const inputBuffer = fs.readFileSync(filePaths);
+          console.log(inputBuffer);
+          sharp(inputBuffer)
+            .png()
+            .unflatten()
+            // .ensureAlpha(0)
+            .toFile(filePath, (err, info) => {
+              if (err) {
+                console.error(err);
+              } else {
+                console.log(info);
+              }
+            });
         }
       });
   });

@@ -109,4 +109,8 @@ $("#image_size_add").click(() => {
   arrs = []
 });
 
+$('#image_size_opticy').click(()=>{
+  window.electronAPI.ImageOpticy();
+})
+
 
