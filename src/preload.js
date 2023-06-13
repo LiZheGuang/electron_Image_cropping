@@ -4,7 +4,8 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld('electronAPI', {
     ImageProcessing: (title) => ipcRenderer.send('image_processing', title),
-    ImageOpticy:()=>ipcRenderer.send('image_opticy')
+    ImageOpticy:()=>ipcRenderer.send('image_opticy'),
+    getPageloadPath: () => ipcRenderer.sendSync('get-page-path'),
   })
 
 // Image processing.

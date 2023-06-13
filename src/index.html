@@ -7,8 +7,6 @@
   </head>
   <body>
     <div class="container mx-auto">
-      <webview id="foo" src="./pages/gpt.html" style="display:inline-flex; width:640px; height:480px"></webview>
-
       <h1 class="clear-both">🌠 图片编辑器</h1>
       <form class="flex items-center space-x-6">
         <!-- <div class="shrink-0">
@@ -33,22 +31,64 @@
         <img id="image" src="" />
       </div>
       <div class="button_father flex flex-row space-x-4">
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center  rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500  transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110   duration-300 " id="bgc_center">背景图片居中</div>
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500  transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="bgc_size_fill">缩放至容器大小</div>
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500  transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="size_big">放大</div>
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500  transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="size_mini">缩小</div>
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500  transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="extend">导出</div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-300"
+          id="bgc_center"
+        >
+          背景图片居中
+        </div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="bgc_size_fill"
+        >
+          缩放至容器大小
+        </div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="size_big"
+        >
+          放大
+        </div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="size_mini"
+        >
+          缩小
+        </div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="extend"
+        >
+          导出
+        </div>
       </div>
-      
-      <p class="text-xl  mt-4" > 🌠  图片压缩与透明</p>
-      <div class="button_father flex flex-row space-x-4">
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="image_size_add">开始压缩图片</div>
-        <div class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300  bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" id="image_size_opticy">透明图片处理</div>
 
+      <p class="text-xl mt-4">🌠 图片压缩与透明</p>
+      <div class="button_father flex flex-row space-x-4">
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="image_size_add"
+        >
+          开始压缩图片
+        </div>
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="image_size_opticy"
+        >
+          透明图片处理
+        </div>
       </div>
       <!-- 图片路径格式 -->
 
-
+      <p class="text-xl mt-4">🌠 工具</p>
+      <div class="button_father flex flex-row space-x-4">
+        <div
+          class="button_click outline outline-offset-1 outline-blue-500 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition ease-in-out duration-300 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          id="gpt_page_to"
+        >
+          GPT机器人
+        </div>
+      </div>
 
       <div class="active-file-father">
         <img

@@ -4,6 +4,7 @@ const {
   ipcMain,
   dialog,
   Notification,
+
 } = require("electron");
 const sharp = require("sharp");
 const fs = require("fs");
@@ -34,6 +35,8 @@ const createWindow = () => {
       webviewTag: true,
     },
   });
+
+  
 
   ipcMain.on("image_processing", function (event, val) {
     dialog
@@ -121,10 +124,9 @@ const createWindow = () => {
         let arslen = 0;
         for (let i = 0; i < result.filePaths.length; i++) {
           let filePaths = result.filePaths[i];
-          const extName = path.extname(filePaths); // .jpeg
           let fileName = path.basename(filePaths); // Leonardo_Diffusion_vector_tshirt_art_ready_to_print_colourful_1.jpeg
           // console.log(fileName, extName);
-          fileName = new Date().getTime() + "_" + fileName;
+          fileName = new Date().getTime() + "_opticy_" + fileName;
           // 目录地址
           const folderPath = path.join(desktopPath, folderName);
           // 图片路径 拼接目录地址
@@ -139,18 +141,39 @@ const createWindow = () => {
           sharp(inputBuffer)
             .png()
             .unflatten()
-            // .ensureAlpha(0)
             .toFile(filePath, (err, info) => {
               if (err) {
                 console.error(err);
               } else {
+                arslen++;
+                if (arslen >= result.filePaths.length) {
+                  showNotification(
+                    "图片透明功能启动",
+                    "图片透明完成 ✿✿ヽ(°▽°)ノ✿"
+                  );
+                }
                 console.log(info);
               }
             });
         }
       });
   });
-  // and load the index.html of the app.
+
+  ipcMain.on('get-page-path', (e) => {
+    e.returnValue = GPT_WINDOW_WEBPACK_ENTRY;
+    const gptWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        webPreferences: {
+          nodeIntegration: true,
+          preload: GPT_WINDOW_PRELOAD_WEBPACK_ENTRY,
+          webSecurity: false, // false 之后就可以访问 本地资源文件了
+          webviewTag: true,
+        },
+      });
+    gptWindow.loadURL(GPT_WINDOW_WEBPACK_ENTRY)
+  });
+
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.

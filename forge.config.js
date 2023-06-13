@@ -38,6 +38,14 @@ module.exports = {
                 js: "./src/preload.js",
               },
             },
+            {
+              html: "./src/pages/gpt.html",
+              js: "./src/pages/gpts/gpt.js",
+              name: "gpt_window",
+              preload: {
+                js: "./src/pages/gpts/preload.js",
+              },
+            },
           ],
         },
       },

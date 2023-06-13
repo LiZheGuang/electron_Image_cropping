@@ -1,4 +1,5 @@
 import "./css/int.css";
+
 import "./index.css";
 
 import "cropperjs/dist/cropper.css";
@@ -9,8 +10,7 @@ function cropperInit() {
   const image = document.getElementById("image");
   cropper = new Cropper(image, {
     aspectRatio: 1 / 1,
-    zoomOnWheel:false,
-  
+    zoomOnWheel: false,
   });
 }
 
@@ -106,11 +106,13 @@ $("#bgc_size_fill").click(() => {
 let arrs = [];
 $("#image_size_add").click(() => {
   window.electronAPI.ImageProcessing(arrs);
-  arrs = []
+  arrs = [];
 });
 
-$('#image_size_opticy').click(()=>{
+$("#image_size_opticy").click(() => {
   window.electronAPI.ImageOpticy();
-})
+});
 
-
+$("#gpt_page_to").click(() => {
+  window.electronAPI.getPageloadPath();
+});
